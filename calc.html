@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>calc</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-image: url("img/bg-01.jpg");
+    background-size: cover;
+    height: 100vh;
+    }
+
+    nav {
+      width: 100%;
+      height: 5vh;
+      background-color: azure;
+    }
+
+    ul {
+      width: 100%;
+      list-style-type: none;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+
+    li {
+      color: black;
+      font-size: x-large;
+      border: 2px solid;
+      border-radius: 5px;
+      animation: square 5s ease-in infinite;
+    }
+
+    @keyframes square {
+      30% {
+        font-size: xx-large;
+        color: red;
+      }
+
+      60% {
+        font-size: x-large;
+        color: green;
+      }
+
+      90% {
+        color: blue;
+        font-size: xx-large;
+
+      }
+    }
+
+    .calculate {
+      display: grid;
+      grid-row: 1fr 4fr;
+    }
+
+    .screen {
+      background-color: rgba(43, 40, 36, 0.555);
+      width: 50%;
+      height: 5vh;
+      margin-left: 28%;
+      margin-top: 10vh;
+      color: aliceblue;
+      font-size: xx-large;
+      text-align: center;
+    }
+
+    .calca {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(5, 1fr);
+      background-color: hsl(0, 0%, 15%);
+      gap: 10px;
+      width: 50%;
+      height: 60vh;
+      margin-left: 28%;
+    }
+
+    button {
+      width: 80%;
+      height: 100%;
+      border-radius: 80%;
+      background-color: rgb(71, 10, 10);
+      color: white;
+      font-size: x-large;
+    }
+
+    .operator {
+      background-color: orange;
+      color: white;
+    }
+
+    button:hover {
+      scale: 1.1 1.1;
+      transition: all 1s;
+    }
+
+    @media (max-width: 890px) {
+      .calca {
+        width: 80%;
+        margin-left: 10%;
+      }
+
+      .screen {
+        width: 80%;
+        margin-left: 10%;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <ul>
+      <li>DECI activity</li>
+      <li>boy's team</li>
+    </ul>
+  </nav>
+  <div class="calculate">
+    <input readonly class="screen" id="screen">
+  </div>
+  <div class="calca">
+    <button class="num" onclick="addCalc('1')">1</button>
+    <button class="num" onclick="addCalc('2')">2</button>
+    <button class="num" onclick="addCalc('3')">3</button>
+    <button class="operator" onclick="del()">c</button>
+    <button class="num" onclick="addCalc('4')">4</button>
+    <button class="num" onclick="addCalc('5')">5</button>
+    <button class="num" onclick="addCalc('6')">6</button>
+    <button class="operator" onclick="addCalc('+')">+</button>
+
+    <button class="num" onclick="addCalc('7')">7</button>
+    <button class="num" onclick="addCalc('8')">8</button>
+    <button class="num" onclick="addCalc('9')">9</button>
+    <button class="operator" onclick="addCalc('-')">-</button>
+
+    <button class="num" onclick="addCalc('0')">0</button>
+    <button class="num" onclick="addCalc('.')">.</button>
+    <button class="operator" onclick="addCalc('*')">*</button>
+    <button class="operator" onclick="addCalc('/')">/</button>
+    <button class="operator" onclick="addCalc('%')">%</button>
+    <button class="operator" onclick="calc()">=</button>
+  </div>
+  </div>
+  <script>
+    let screen = document.querySelector("#screen");
+    function addCalc(parm) {
+      screen.value += parm;
+    }
+    function del() {
+      screen.value = "";
+    }
+    function calc() {
+      if (eval(screen.value) === Infinity) {
+        screen.value = "canot division by zero";
+      } else if (eval(screen.value) === NaN) { screen.value = "EROOR"; }
+      else {
+        screen.value = eval(screen.value);
+      }
+    }
+  </script>
+</body>
+
+</html>
